@@ -1,8 +1,5 @@
-﻿'TODO:1. Change Procedure name to your own procedure name
-
-'TODO:2.  Add Json package to the resources
-
-'TODO:3. Create A Project Class
+﻿Imports System.Data.Common
+Imports Newtonsoft.Json
 
 'TODO:4.  Create A Json file for the Project Class
 
@@ -47,7 +44,8 @@ Module Module1
 
             If input = "create" Then 'This line makes the condition needed to activate the MakeP2PProjectFolders function. In this case the condition is that user types in "create"
 
-                MakeP2PProjectFolders()
+                MakeProjectFolders()
+                SerializeProject()
 
             End If
 
@@ -55,11 +53,37 @@ Module Module1
 
     End Sub
 
-    Private Sub MakeP2PProjectFolders() 'This is where the function utilized in the code above is actually defined
+
+    Sub SerializeProject()
+        Dim myProject As New Project()
+        myProject.Department = "Visual"
+        myProject.Task = "Presentation"
+
+        Dim json As String = JsonConvert.SerializeObject(myProject)
+
+        Dim location As String = My.Computer.FileSystem.SpecialDirectories.Desktop 'variables must be declared before they are referenced
+
+
+
+        Dim file As IO.StreamWriter
+        file = My.Computer.FileSystem.OpenTextFileWriter(location + "\jsobData.json", True)
+        file.WriteLine(json)
+        file.Close()
+
+
+    End Sub
+
+
+
+
+
+
+
+    Private Sub MakeProjectFolders() 'This is where the function utilized in the code above is actually defined as a procedure
 
         'TODO: Add Json database
 
-        'TODO: Change MakeP2PProjectFolders to MakeProjectFolders
+
 
         Dim newFolderPath As String = My.Computer.FileSystem.SpecialDirectories.Desktop 'This tells the code to insert the computers Desktop directory everytime it reade the string newFolderPath.
         'this If statement is telling the program what to do in case the user enters a blank. The program will automatically name the folder Week#
