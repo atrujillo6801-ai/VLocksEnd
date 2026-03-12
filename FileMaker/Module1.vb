@@ -30,69 +30,69 @@ Module Module1
 
     Dim FullDirectory As String
 
-    'This function tells the console window what to write and what to read.
-    Sub Main() 'A Sub is a function that doesn't return anything
+
+    Sub Main()
 
         Dim input As String = 0
 
-        While input <> "exit" 'This tells the console to display the follwing things as long as the input IS NOT exit. Notice that it must receive the exact input "exit" with respect to all lowercase, otherwis it won't work
+        While input <> "exit"
 
             Console.WriteLine("please the week number.")
 
-            WeekNumber = Console.ReadLine 'The Console will read whatever the user types as the WeekNumber string
+            WeekNumber = Console.ReadLine
 
-            Console.WriteLine("Please enter a command  exit | create") 'Notice that the Console writes the lines in the order they appear in.
+            Console.WriteLine("Please enter a command  exit | create")
 
             input = Console.ReadLine.ToString()
 
-            If input = "create" Then 'This line makes the condition needed to activate the MakeP2PProjectFolders function. In this case the condition is that user types in "create"
+            If input = "create" Then
 
                 MakeP2PProjectFolders()
 
             End If
 
-        End While 'This marks the loop that is created by While. As long as we don't type in "exit" the Console will keep writing the lines as a loop.
+        End While
 
     End Sub
 
-    Private Sub MakeP2PProjectFolders() 'This is where the function utilized in the code above is actually defined
+    Private Sub MakeP2PProjectFolders()
 
         'TODO: Add Json database
 
         'TODO: Change MakeP2PProjectFolders to MakeProjectFolders
 
-        Dim newFolderPath As String = My.Computer.FileSystem.SpecialDirectories.Desktop 'This tells the code to insert the computers Desktop directory everytime it reade the string newFolderPath.
-        'this If statement is telling the program what to do in case the user enters a blank. The program will automatically name the folder Week#
+        Dim newFolderPath As String = My.Computer.FileSystem.SpecialDirectories.Desktop
+
         If WeekNumber = "" Then
             WeekNumber = " Week#\"
 
         End If
 
-        '  My.Computer.FileSystem.CreateDirectory(newFolderPath + ProjectName)
 
-        CreateProjectFolder(newFolderPath, WeekNumber) 'this function places a WeekNumber folder in our Desktop screen
-        newFolderPath += "\" + WeekNumber 'now it updates every newFolderPath to reference the WeekNumber folder in our desktop.
+
+        CreateProjectFolder(newFolderPath, WeekNumber)
+        newFolderPath += "\" + WeekNumber
         FullDirectory = newFolderPath
 
-        'This creates a folder called Screenshots inside of the updated newFolderPath
+
         CreateProjectFolder(newFolderPath, "\Screenshots")
 
-        'the dollar sign and brackets is a concatenation, so that two things can be added together. The dollar sign indicates that the things inside the brackets is a variable.
+
         CreateProjectFolder($"{newFolderPath}\Screenshots", "DiscordPost")
-        CreateProjectFolder($"{newFolderPath}\Screenshots", "ProjectUpdates") ' notice that the comma indicates that all those folders will happen inside of screenshots and parallel to eachother
+        CreateProjectFolder($"{newFolderPath}\Screenshots", "ProjectUpdates")
         CreateProjectFolder($"{newFolderPath}\Screenshots", "ICA")
 
-        CreateProjectFolder(newFolderPath, "\WorkingApplication") 'notice that this follows the same formula as the screenshot folder, so it is a parallel folder
+        CreateProjectFolder(newFolderPath, "\WorkingApplication")
 
-        'This creates a text file in in the main project folder
+
         WriteFile("ReadMe.txt", newFolderPath)
-        'This creates a text file inside (or after) the Screenshots folder 
+
         WriteFile("ReadMe.txt", $"{newFolderPath}\WorkingApplication")
 
 
 
 
-        Console.WriteLine("Project created in: " + FullDirectory) 'This tells the console to give you the full directory of the folder you created
+        Console.WriteLine("Project created in: " + FullDirectory)
 
     End Sub
 
@@ -114,10 +114,9 @@ Module Module1
 
     End Sub
 
-    'this is the definition of what the CreateProjectFolder function does - it is the function used within the Sub above
-    'the things in the parenthesis are the arguments = the things that the function is working with/on. Notice that the data type neeeds to be read as.
+
     Sub CreateProjectFolder(newFolderPath As String, WeekNumber As String)
-        'this says: create a directory in My Computer's File System that combines folders within the newFolderPath Variable Starting with the Variable WeekNumber
+
         My.Computer.FileSystem.CreateDirectory(newFolderPath + "\" + WeekNumber)
 
     End Sub
