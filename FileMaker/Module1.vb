@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Common
+Imports System.IO
 Imports Newtonsoft.Json
 
 'TODO:4.  Create A Json file for the Project Class
@@ -54,28 +55,6 @@ Module Module1
     End Sub
 
 
-    Sub SerializeProject()
-        Dim myProject As New Project()
-        myProject.Department = "Visual"
-        myProject.Task = "Presentation"
-
-        Dim json As String = JsonConvert.SerializeObject(myProject)
-
-        Dim location As String = My.Computer.FileSystem.SpecialDirectories.Desktop 'variables must be declared before they are referenced
-
-
-
-        Dim file As IO.StreamWriter
-        file = My.Computer.FileSystem.OpenTextFileWriter(location + "\jsobData.json", True)
-        file.WriteLine(json)
-        file.Close()
-
-
-    End Sub
-
-
-
-
 
 
 
@@ -119,6 +98,28 @@ Module Module1
         Console.WriteLine("Project created in: " + FullDirectory) 'This tells the console to give you the full directory of the folder you created
 
     End Sub
+
+
+
+
+    Sub SerializeProject()
+        Dim myProject As New Project()
+        myProject.Department = "Visual"
+        myProject.Task = "Presentation"
+
+        Dim json As String = JsonConvert.SerializeObject(myProject)
+
+        Dim location As String = My.Computer.FileSystem.SpecialDirectories.Desktop 'variables must be declared before they are referenced
+        Dim currentDirectory As String = FullDirectory
+
+        Dim file As IO.StreamWriter
+        file = My.Computer.FileSystem.OpenTextFileWriter(FullDirectory + "\commonTasks.json", True)
+        file.WriteLine(json)
+        file.Close()
+
+
+    End Sub
+
 
     Private Sub WriteFile(fileName As String, location As String)
 
