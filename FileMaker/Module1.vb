@@ -35,7 +35,7 @@ Module Module1
 
         Dim input As String = 0
 
-        While input <> "exit" 'This tells the console to display the follwing things as long as the input IS NOT exit. Notice that it must receive the exact input "exit" with respect to all lowercase, otherwis it won't work
+        While input <> "xit" 'This tells the console to display the follwing things as long as the input IS NOT exit. Notice that it must receive the exact input "exit" with respect to all lowercase, otherwis it won't work
 
             Console.WriteLine("please the week number.")
 
@@ -47,7 +47,7 @@ Module Module1
 
             If input = "create" Then 'This line makes the condition needed to activate the MakeP2PProjectFolders function. In this case the condition is that user types in "create"
 
-                MakeP2PProjectFolders()
+                MakeP2PProjectFolder()
 
             End If
 
@@ -78,9 +78,9 @@ Module Module1
         CreateProjectFolder(newFolderPath, "\Screenshots")
 
         'the dollar sign and brackets is a concatenation, so that two things can be added together. The dollar sign indicates that the things inside the brackets is a variable.
-        CreateProjectFolder($"{newFolderPath}\Screenshots", "DiscordPost")
+        CreateProjectFolder($"{newFolderPath}\Screenshots" "DiscordPost")
         CreateProjectFolder($"{newFolderPath}\Screenshots", "ProjectUpdates") ' notice that the comma indicates that all those folders will happen inside of screenshots and parallel to eachother
-        CreateProjectFolder($"{newFolderPath}\Screenshots", "ICA")
+        CreateProjectFolder($"{newFolderPath}Screenshots", "ICA")
 
         CreateProjectFolder(newFolderPath, "\WorkingApplication") 'notice that this follows the same formula as the screenshot folder, so it is a parallel folder
 
@@ -118,8 +118,8 @@ Module Module1
     'the things in the parenthesis are the arguments = the things that the function is working with/on. Notice that the data type neeeds to be read as.
     Sub CreateProjectFolder(newFolderPath As String, WeekNumber As String)
         'this says: create a directory in My Computer's File System that combines folders within the newFolderPath Variable Starting with the Variable WeekNumber
-        My.Computer.FileSystem.CreateDirectory(newFolderPath + "\" + WeekNumber)
+        My.Computer.FileSystem.CreateDirectory(newFolderPath + WeekNumber)
 
-    End Sub
+
 
 End Module
